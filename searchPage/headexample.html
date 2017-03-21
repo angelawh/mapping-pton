@@ -1,0 +1,56 @@
+
+<HTML>
+    <style type="text/css">
+    pre {
+         font-weight: bold; background-color: #ffffcc;
+    }
+    </style>
+  <head>
+
+<script>
+var req;
+function loadXMLDoc(url) {
+   window.status = "getting " + url
+   req = new XMLHttpRequest();
+   if (req) {
+      req.onreadystatechange = function() {
+         window.status = req.statusText;
+         if (req.readyState == 4) {  // completed request
+            if (req.status == 200)
+               show(req.responseText);
+         }
+      };
+      req.open("GET", url);
+      req.send(null);
+   }
+} 
+function geturl(s) {
+   if (s.length > 1) {
+      show(s);
+      show(s);
+      show(s);
+   }
+}
+function show(s) {   // show whatever came back
+   var e = document.getElementById("place")
+   e.innerHTML = s   //window.scrollTo(0, 1000)
+}
+
+function phonef(){document.phone.pat.focus();}
+
+</script>
+</head>
+
+<BODY onload='phonef();'>
+
+<h1> unPhonebook</h1>
+
+<form name=phone>
+Type here: <input type="text" id="pat"
+     onkeyup='geturl(pat.value);' >
+</form>
+
+<pre id="place"></pre>
+
+</BODY>
+</HTML>
