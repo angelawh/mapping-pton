@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="gui.css"/>
+        <title>Graph</title>
+    </head>
+    <body>
+      <div id='uploadBox' height = '100'>
+        <input type="file" id='file' class='' accept= 'image/*'>
+        <input type="button" value="Upload" id="upload"/>
+        <span id = 'zoomName'>Zoom: </span>
+        <select id = "zoom">
+          <option value = '1.0'> 1X </option>
+          <option value = '2.0'> 2X </option>
+          <option value = '3.0'> 3X </option>
+          <option value = '4.0'> 4X </option>
+          <option value = '5.0'> 5X </option>
+        </select>
+
+        <form id= "radius" class = 'nodisplay'> <span>Radius:</span> 
+          <input type = 'text' name ='radius' id='radiustext'>
+        </form>
+        <form><span>Building Name:</span> 
+          <input type = 'text' name ='buildingName' id='buildingName'>
+        <span>&nbsp;&nbsp;Floor Number:</span> 
+          <input type = 'text' name ='floorNumber' id='floorNumber'>
+        </form>
+      </div>
+
+      <div id='loadTextBox' height = '100'>
+        <button type='button' id='clear' class='textbutton'> <img src='icons/clear.png' alt='Clear' title='Clear All' class='icon'></button> 
+        <button type="button" id='save' class='textbutton'> <img src='icons/save.png' alt='Save' title='Save' class='icon'></button>
+        <button type="button" id='load' class='textbutton'> <img src='icons/upload.png' alt='Load' title='Load' class='icon'></button>
+        <input type="file" id='jsonText' class='' accept= 'text/*'>
+      </div>
+
+      <div id="editBox">
+        <label><form id="tool"><!-- <span>Editing tools:</span> -->
+          <label class='toollabel'>
+            <input type='radio' class='tool' name='tool' id='add' value='add' checked='checked'>
+            <img src='icons/add.png' alt='Add' title='Add' class='icon'>
+          </label>
+          <label class='toollabel'>
+            <input type='radio' class='tool' name='tool' id='move' value='move'>
+            <img src='icons/move.png' alt='Move' title='Move' class='icon'>
+          </label>
+          <label class='toollabel'>
+            <input type='radio' class='tool' name='tool' id='delete' value='delete'>
+            <img src='icons/delete.png' alt='Delete' title='Delete' class='icon'>
+          </label>
+          <label class='toollabel'>
+            <input type='radio' class='tool' name='tool' id='straighten' value='straighten'>
+            <img src='icons/straighten.png' alt='Straighten' title='Straighten' class='icon'>
+          </label>
+          <label class='toollabel'>
+            <input type='radio' class='tool' name='tool' id='scale' value='scale'>
+            <img src='icons/scale.png' alt='Scale' title='Scale' class='icon'>
+          </label>
+          <label class='toollabel'>
+            <input type='radio' class='tool' name='tool' id='info' value='info'>
+            <img src='icons/info.png' alt='Node Info' title='Node Info' class='icon'>
+          </label>
+        </form></label>
+        <button type="button" id="undo" class="undoredo textbutton" onclick='undo()'> 
+          <img src='icons/undo.png' alt='Undo' title='Undo' class='icon'></button>
+        <button type="button" id='redo' class="undoredo textbutton" onclick='redo()'> 
+          <img src='icons/redo.png' alt='Redo' title='Redo' class='icon'></button>
+      <div id = "editAttributes">
+        <select id='nodeType' class='nodisplay'>
+          <option value="walk">Walk</option>
+          <option value="room">Room</option>
+          <option value="bathroom">Bathroom</option>
+          <option value="stairs">Stairs</option>
+          <option value="elevator">Elevator</option>
+          <option value="entry">Entry</option>
+          <option value="accessibility">Accessibility</option>
+        </select> 
+
+        <form id="stairinfo" name="stairinfo" class="addStairs addElevator nodisplay">
+          Set: <input type='text' name='stairset' id='stairset' size='10'>
+        </form>
+
+        <form id="stairconnectionForm" class="addStairs nodisplay tabbed">
+          Floor Down: <input type='text' id = 'stairsdown' name="dirnodes" size = '3' value=''>  
+          Up: <input type='text' id = 'stairsup' name="dirnodes" size = '3' value=''>
+        </form>
+          
+        <form id= "roomNumberForm" class="addRoom addBathroom nodisplay"> 
+          Room Number: <input id="roomNumber" type = 'text' name ='numtextbox'>
+        </form>  
+
+        <form id="bathroom"  class="addBathroom nodisplay tabbed">
+          <input type='radio' name='gender' id='F' value='F' checked='checked'>Female
+          <input type='radio' name='gender' id='M' value='M'>Male    
+          <input type='radio' name='gender' id='U' value='X'> Unisex
+        </form>
+
+        <form name = "connected" class='addEntry nodisplay'>
+          <input type="radio" name='entry' id = "inside" value="I" checked='checked'> Inside 
+          <input type="radio" name='entry' id = "outside" value="O"> Outside 
+          <input type="radio" name='entry' id = "otherBuilding" value="B"> Other Building
+        </form>
+
+        <form id= "entryway" class="nodisplay tabbed">
+          Entryway Number: <input type = 'text' name ='entryway' id= "entrywayNo">
+        </form>  
+
+        <form name = "insideConnection" id = "insideEntryway" class="nodisplay tabbed">
+          Name: <input type="text" id = "connBuilding" value="" size = 15>
+          Floor: <input type="text" id = "connFloor" value="" size = 3>
+        </form>
+
+        <!-- scale components -->
+        <form id= "scale" class = 'scale nodisplay'>
+          Pixels:<input type='text' id = 'pixels' name='pixels' value=''>
+          Distance: <input type='text' id = 'scaleDist' name='scaleDist' value=''/>
+        </form> 
+
+        <label><select class = 'scale nodisplay' id="units">
+            <option value="meters">m</option>
+            <option value="centimeters">cm</option>
+            <option value="yards">yd</option>
+            <option value="feet">ft</option>
+        </select></label>
+      </div></div>
+  
+<div id="infobox" name = "info" class = 'nodisplay' style= "z-index: 10">
+<form id="example" name="example">
+        Node ID: <input type="text" value="" id="infoid" name="populateme" /><br>
+        X-Coord: <input type="text" value="" id="infox" name="populateme" /><br>
+        Y-Coord: <input type="text" value="" id="infoy" name="populateme" /><br>
+        Type: <input type="text" value="" id="infotype" name="populateme"/><br>
+        <span class='infobox' id='infoentry'>Entry: <input type="text" value="" id="popentry" /><br>
+        <span class='infobox' id='infoentry2'>Connected to building: </span> 
+        <input type="checkbox" value="I" id="popin" name="populateme"/> 
+        <span class='infobox' id='infoentry3'>or outside: </span><input type="checkbox" value="O" id="popout" name="populateme" /><br>
+        <span class='infobox' id='infoentry4'>Building: </span><input type="text" value="" id="popob" name="populateme" /> <span class='infobox' id='no1.4' >Floor: </span> <input type="text" value="" id="popof" name="populateme" size =3></span><br>
+        
+        <span class="infobox" id='inforoom'>Room: <input type="text" value="" id="poproom" name="populateme"/><br></span> 
+        <span class="infobox" id='infogender'>Gender: <input type='radio' id = 'popfemale' name='genderpop' value='F'><span class='ForM' id='no4'>Female</span><input type='radio' id = 'popmale' name='genderpop' value='M' onclick = "updateGender(findme.value)" ><span class='ForM' id='no5'>Male</span><input type='radio' id = 'popunisex' name='genderpop' value='X' ><span class='ForM' id='no5.5'>Unisex</span></span> <br>
+        <span class = "infobox" id='infostair'>Stair/Elevator Set<input type="text" value="" id="popset" name="populateme" />
+        <span class = "infobox" id='no7'>Floors</span> <input type="text" value="" id="popfloors" name="populateme"/><br>
+        <span class="infobox" id='no8'>Connecting Floors: </span> <span class='Forup' id='no10'>Down</span><input type='text' id = 'down' name='down' size = '3'value='' ><span class='Forup' id='no9'>Up</span><input type='text' id = 'up' name='up' value='' size = '3'></span>
+    </form>
+  </div>
+
+
+      <div id="canvasDiv"> <!-- is this necessary? The drop stuff -->
+        <canvas id="canvasPerm"></canvas>
+        <canvas id="canvas" ></canvas>
+        <canvas id="backgroundCanvas" ></canvas>
+        <script src="gui.js"></script>
+      </div>
+    </body>
+</html>
+
+
+
+<!-- 
+Changes made to names:
+before = after
+container = canvasDiv
+imageView/canvaso = canvas (permanent part of canvas)
+canvas = canvasTemp (temporary part of canvas)
+dtool = tool
+graph_info = graphJSON
+-->

@@ -1,0 +1,137 @@
+#canvasDiv { 
+	position: relative; 
+	top: 60px;
+}
+
+#canvasPerm, #canvas { 
+	position: absolute; 
+	border: 1px solid #000; 
+	top: 1px; 
+	left: 1px; 
+	width: 563;
+	height: 272; 
+	position: absolute; 
+	left: 0; 
+	top: 0;
+}
+
+#uploadBox {
+	height: 100;
+	display: inline-block;
+}
+
+.nodisplay {
+	display: none;
+}
+
+#undoredo, #tool, #nodeType {
+	display: inline-block;
+}
+
+/* Format the icons. */
+.toollabel > input {
+	visibility: hidden;
+	position: absolute;
+}
+
+.toollabel > input + img {
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-radius: 7px;
+}
+
+.toollabel > input:checked + img {
+	border:2px solid #2E9AFE;
+}
+
+/* Formal other icons. */
+/* Format the icons. */
+
+.textbutton {
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-radius: 7px;
+	width:  22px;
+    height: 22px;
+}
+
+.textbutton > img {
+	width:  22px;
+    height: 22px;
+    position: relative;
+    right: 8px;
+    bottom: 4px;
+	border-radius: 7px;
+}
+
+.undoredo {
+	position: relative;
+	width:  20px;
+    height: 20px;
+    top: 1px;
+}
+.undoredo > img {
+	width:  20px;
+    height: 20px;
+}
+
+/* Format the info tool. */
+.info {
+	border: 2px solid transparent;
+}
+
+.icon {
+	width:  20px;
+    height: 20px;
+}
+
+/* Scale tool */
+#pixels, #scaleDist {
+	width: 50px;
+}
+
+.tabbed {
+	text-indent: 25px;
+}
+
+#editBox {
+	position: fixed;
+	padding: 2px;
+	border: 2px solid #d5d8dd;
+	border-radius: 5px;
+	z-index: 10;
+	background-color: white;
+}
+
+#uploadBox, #loadTextBox {
+	padding: 2px;
+}
+
+#jsonText {
+	opacity: 10;
+	position: relative;
+	bottom: 5px;
+}
+
+#infobox {
+	padding: 2px;
+	height: 80px;
+	width: 190px;
+	background-color: white;
+	border: 2px solid #d5d8dd;
+	border-radius: 5px;
+	position: fixed;
+	margin-top:0px;
+	margin-left: 500px;
+	font-size: 14px;
+}
+
+
+.infobox {
+	display: none;
+}
+/*
+#load {
+	position: absolute;
+}
+*/
