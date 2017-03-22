@@ -62,8 +62,8 @@ function init () {
   //for load function
   document.getElementById('load').addEventListener('click', load, false);
   //for updating of text boxes:
-  document.getElementById('buildingName').addEventListener('keypress', updateBuildingName, false);
-  document.getElementById('floorNumber').addEventListener('keypress', updateFloorNumber, false);
+  //document.getElementById('buildingName').addEventListener('keypress', updateBuildingName, false);
+  //document.getElementById('floorNumber').addEventListener('keypress', updateFloorNumber, false);
   //for save button
   document.getElementById('save').addEventListener('click', save, false);
   //for clear button
@@ -1138,7 +1138,7 @@ tools.info = function() {
 
       uploadNodeInfo(closest);
       //send node_id to gender box
-      updateText(closestNode[1]);
+      updateText(closest);
      }
    };
  };
@@ -1148,6 +1148,7 @@ function uploadNodeInfo(node) {
   document.getElementById("infox").value = parseInt(node.x);
   document.getElementById("infoy").value = parseInt(node.y);
   document.getElementById("infotype").value = node.type;
+  document.getElementById("infoall").value = JSON.stringify(node);
 }
 
 
@@ -1279,8 +1280,9 @@ function upload(zoom){
 //clear ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function clear() {
   //ADD A PROMPT HERE TO ENSURE SANITY
-  console.log('clearing')
-
+  if (!confirm('Are you sure you want to clear the canvas, all nodes, and all edges?')) {
+    return;
+  }
   //clear image
   context.clearRect(0, 0, canvas.width, canvas.height);
   contextPerm.clearRect(0, 0, canvasPerm.width, canvasPerm.height);
@@ -1295,11 +1297,10 @@ function clear() {
 
 
 //update text boxes area -- floor number and building name not needed
-function updateFloorNumber() {
-};
-
-function updateBuildingName() {
-};
+//function updateFloorNumber() {
+//};
+//function updateBuildingName() {
+//};
 
 function updateText() {
 };

@@ -62,10 +62,10 @@
             <img src='icons/info.png' alt='Node Info' title='Node Info' class='icon'>
           </label>
         </form></label>
-        <button type="button" id="undo" class="undoredo textbutton" onclick='undo()'> 
+        <!-- <button type="button" id="undo" class="undoredo textbutton" onclick='undo()'> 
           <img src='icons/undo.png' alt='Undo' title='Undo' class='icon'></button>
         <button type="button" id='redo' class="undoredo textbutton" onclick='redo()'> 
-          <img src='icons/redo.png' alt='Redo' title='Redo' class='icon'></button>
+          <img src='icons/redo.png' alt='Redo' title='Redo' class='icon'></button> -->
       <div id = "editAttributes">
         <select id='nodeType' class='nodisplay'>
           <option value="walk">Walk</option>
@@ -126,11 +126,11 @@
       </div></div>
   
 <div id="infobox" name = "info" class = 'nodisplay' style= "z-index: 10">
-<form id="example" name="example">
         Node ID: <input type="text" value="" id="infoid" name="populateme" /><br>
         X-Coord: <input type="text" value="" id="infox" name="populateme" /><br>
         Y-Coord: <input type="text" value="" id="infoy" name="populateme" /><br>
         Type: <input type="text" value="" id="infotype" name="populateme"/><br>
+        <input type="text" value="" id="infoall" name="populateme"/><br>
         <span class='infobox' id='infoentry'>Entry: <input type="text" value="" id="popentry" /><br>
         <span class='infobox' id='infoentry2'>Connected to building: </span> 
         <input type="checkbox" value="I" id="popin" name="populateme"/> 
@@ -142,7 +142,6 @@
         <span class = "infobox" id='infostair'>Stair/Elevator Set<input type="text" value="" id="popset" name="populateme" />
         <span class = "infobox" id='no7'>Floors</span> <input type="text" value="" id="popfloors" name="populateme"/><br>
         <span class="infobox" id='no8'>Connecting Floors: </span> <span class='Forup' id='no10'>Down</span><input type='text' id = 'down' name='down' size = '3'value='' ><span class='Forup' id='no9'>Up</span><input type='text' id = 'up' name='up' value='' size = '3'></span>
-    </form>
   </div>
 
 
