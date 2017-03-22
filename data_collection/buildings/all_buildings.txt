@@ -1,0 +1,188 @@
+Alexander Hall F3
+Andlinger Center for Energy and the Environment K4
+Architecture Laboratory J8
+Architecture School H3
+Art Museum G4
+Arts & Transit Project E7
+Baker Hall F6
+Baker Rink F7
+Bedford Field H10
+Bendheim Center for Finance I4
+Bendheim Hall I4
+Berlind Theatre E6
+Blair Hall E3
+Bloomberg Hall G7
+Bobst Hall L4
+Bowen Hall K4
+Brown Hall G4
+Burr Hall H2
+Buyers Hall F3
+Caldwell Fieldhouse K8
+Campbell Field L8
+Campbell Hall F3
+Campus Club I4
+CDE (Cannon Dial Elm Club) I4
+Cannon Green G3
+Cap & Gown Club K4
+Center for Jewish Life I5
+Chancellor Green G2
+Chapel H3
+Charter Club K4
+Child Care Center M7
+Chilled Water Plant F8
+Clarke Field K6
+Class of 1887 Boathouse H11
+Cleveland Tower B7
+Clio Hall G3
+Cloister Inn K4
+Cogeneration Plant F8
+College Road Apartments E5
+Colonial Club J4
+Community Hall F6
+Computer Science Building K3
+Cooling Towers F8
+Cordish Family Pavilion G9
+Corwin Hall I3
+Cottage Club J4
+Cuyler Hall G5
+DeNunzio Pool K8
+Dickinson Hall H3
+Dillon Court East F5
+Dillon Court West F5
+Dillon Gymnasium F5
+Dinky Bar and Kitchen E6
+Dod Hall G4
+Dodge Hall G3
+Dodge-Osborn Hall H5
+East Pyne Hall G3
+Edwards Hall F4
+Elementary Particles Labs East and West L9
+Engineering Quadrangle K3
+Eno Hall H6
+Feinberg Hall G5
+Ferris Thompson Apartments L5
+Fields Center J4
+Fine Hall I6
+Finney Field K7
+Firestone Library H2
+Fisher Hall I4
+Fisher Hall (Whitman) F6
+FitzRandolph Observatory L8
+Forbes College D7
+Foulke Hall E4
+Frelinghuysen Field K8
+Frick Chemistry Laboratory J8
+Friend Center J3
+Frist Campus Center H5
+Garden Theatre H1
+Gauss Hall G6
+Graduate College A7
+Green Hall H3
+Grounds Storage Buildings G10
+Gulick Pavilion H9
+Guyot Hall H5
+Hamilton Hall E2
+Hargadon Hall F6
+Helm Building F12
+Henry Hall E4
+Henry House G2
+Holder Hall E2
+Hoyt Laboratory I3
+Icahn Laboratory H7
+Ivy Club J4
+Jadwin Gymnasium K9
+Jadwin Hall I7
+Joline Hall E3
+Jones Hall H5
+Julis Romo Rabinowitz Building H3
+Labyrinth Books G2
+Lakeside Garage F11
+Lakeside Graduate Housing G12
+Laughlin Hall F4
+Lauritzen Hall F6
+Lenz Tennis Center G9
+Lewis Library I6
+Little Hall F4
+Lockhart Hall E3
+Lourie-Love Pavilion H7
+Lowrie House A2
+Maclean House F2
+MacMillan Building F8
+Madison Hall E2
+Maeder Hall K4
+Marx Hall H4
+McCarter Theatre E5
+McCormick Hall G4
+McCosh Hall H3
+McCosh Health Center H5
+McDonnell Hall I6
+Moffett Laboratory H6
+Mudd Library J3
+Murley-Pivirotto Family Tower F6
+Murray Theater G3
+Myslik Field H8
+Nassau Hall G3
+New South Building F6
+North Garage L4
+Olden House J3
+Palmer House D2
+Pardee Field H7
+Patton Hall G5
+Peretsman Scully Hall I8
+Peyton Hall J6
+Plummer Field H8
+Poe Field H7
+Princeton Neuroscience Institute I8
+Princeton Stadium K6
+Princeton Station E8
+Princeton University Press J3
+Princeton University Store, 114 Nassau Street, G1
+Procter Hall B7
+Prospect Apartments L4
+Prospect Gardens H4
+Prospect House H4
+Pyne Hall F5
+Quadrangle Club J4
+Roberts Stadium H8
+Robertson Hall I4
+Rock Magnetism Laboratory H6
+Scheide Caldwell House G2
+Schultz Laboratory H6
+Scully Hall H7
+Shea Rowing Center H11
+Sherrerd Hall J3
+Sexton Field L7
+Simpson Building I3
+Spelman Halls F6
+Springdale Golf Course C9
+Stanhope Hall F2
+Stephens Fitness Center F5
+Streicker Bridge I7
+Strubing Field L7
+Terrace Club I4
+Thermal Energy Storage Tank F8
+Thomas Laboratory H6
+Tiger Inn J4
+Tower Club I4
+U-Store, 36 University Place E3
+Upper Strubing Field L6
+Visitor Parking Lot 23 F9
+Vistor Parking Lot 21 L9
+Wallace Hall J3
+Walker Hall G5
+Weaver Track Stadium K8
+Wendell Hall F6
+West College F3
+West Garage F8
+West Lodge A7
+Whig Hall G3
+Wilcox Hall G6
+Wilf Hall H7
+Witherspoon Hall F3
+Woolworth Center for
+Musical Studies H4
+Wright Hall G5
+Wu Hall G6
+Wyman Cottage A7
+Wyman House A7
+Yoseloff Hall G6

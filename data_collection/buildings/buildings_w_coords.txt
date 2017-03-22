@@ -1,0 +1,188 @@
+Alexander Hall, 40.3483295, -74.6606107
+Andlinger Center for Energy and the Environment, 40.349308, -74.650916
+Architecture Laboratory, 40.3436136, -74.6499203
+Architecture School, 40.3478617, -74.6561685
+Art Museum, 40.3474763, -74.6581078
+Arts & Transit Project, 40.3439888, -74.6514481
+Baker Hall, 40.3435473, -74.6577692
+Baker Rink, 40.3428942, -74.6578591
+Bedford Field, 40.3409427, -74.6522713
+Bendheim Center for Finance, 40.349166, -74.6552373
+Bendheim Hall, 40.3487152, -74.6540869
+Berlind Theatre, 40.3438059, -74.6603993
+Blair Hall, 40.3475529, -74.6620274
+Bloomberg Hall, 40.3434997, -74.6560059
+Bobst Hall, 40.348916, -74.649515
+Bowen Hall, 40.3495302, -74.6503122
+Brown Hall, 40.3445138, -74.6629685
+Burr Hall, 40.3502022, -74.6565805
+Buyers Hall, 40.3473606, -74.6607652
+Caldwell Fieldhouse, 40.3443101, -74.6483305
+Campbell Field, 40.3455599, -74.6471796
+Campbell Hall, 40.3480805, -74.661337
+Campus Club, 40.347571, -74.654436
+CDE (Cannon Dial Elm Club), 40.3478248, -74.6532635
+Cannon Green, 40.3481299, -74.6592558
+Cap & Gown Club, 40.3483205, -74.6510106
+Center for Jewish Life, 40.3466732, -74.6536007
+Chancellor Green, 40.349052, -74.6586002
+Chapel, 40.3488423, -74.6569899
+Charter Club, 40.348763, -74.6500159
+Child Care Center, 40.318289, -74.649154
+Chilled Water Plant, 40.3418084, -74.6567324
+Clarke Field, 40.346479, -74.6481176
+Class of 1887 Boathouse, 40.3395081, -74.6506645
+Cleveland Tower, 40.3405745, -74.6646513
+Clio Hall, 40.3476855, -74.6591541
+Cloister Inn, 40.348605, -74.6505686
+Cogeneration Plant, 40.3439888, -74.6514481
+College Road Apartments, 40.344903, -74.6615636
+Colonial Club, 40.348833, -74.652813
+Community Hall, 40.3441355, -74.6576548
+Computer Science Building, 40.350211, -74.652207
+Cooling Towers, 40.341389, -74.6564789
+Cordish Family Pavilion, 40.3414656, -74.6544757
+Corwin Hall, 40.3489081, -74.6543614
+Cottage Club, 40.3482897, -74.6517764
+Cuyler Hall, 40.3459801, -74.6574718
+DeNunzio Pool, 40.3439001, -74.647408
+Dickinson Hall, 40.3487251, -74.6560731
+Dillon Court East, 40.34521, -74.6581122
+Dillon Court West, 40.3451037, -74.6584782
+Dillon Gymnasium, 40.3456097, -74.6587961
+Dinky Bar and Kitchen, 40.3439064, -74.6596363
+Dod Hall, 40.3467642, -74.6586611
+Dodge Hall, 40.3479308, -74.6579343
+Dodge-Osborn Hall, 40.3453842, -74.6556988
+East Pyne Hall, 40.3487701, -74.6584686
+Edwards Hall, 40.3471399, -74.6592787
+Elementary Particles Labs East and West, 40.344312, -74.6458417
+Engineering Quadrangle, 40.3507445, -74.6505089
+Eno Hall, 40.3454162, -74.6552895
+Feinberg Hall, 40.3458032, -74.6565362
+Ferris Thompson Apartments, 40.3477504, -74.6488141
+Fields Center, 40.3491632, -74.6517717
+Fine Hall, 40.3458323, -74.6523747
+Finney Field, 40.345385, -74.6477997
+Firestone Library, 40.3462131, -74.6525774
+Fisher Hall, 40.3485594, -74.6540869
+Fisher Hall (Whitman), 40.3446654, -74.658238
+FitzRandolph Observatory, 40.3456726, -74.6456798
+Forbes College, 40.3421537, -74.6609312
+Foulke Hall, 40.3463337, -74.6609653
+Frelinghuysen Field, 40.3446111, -74.6493753
+Frick Chemistry Laboratory, 40.344025, -74.6507095
+Friend Center, 40.3505454, -74.652204
+Frist Campus Center, 40.3468205, -74.655209
+Garden Theatre, 40.350687, -74.6575871
+Gauss Hall, 40.345089, -74.6567079
+Graduate College, 40.3407635, -74.6657523
+Green Hall, 40.3497669, -74.6561206
+Grounds Storage Buildings, 40.2698224, -74.7113308
+Gulick Pavilion, 40.3417436, -74.6536523
+Guyot Hall, 40.345904, -74.6545161
+Hamilton Hall, 40.348096, -74.662271
+Hargadon Hall, 40.3438677, -74.6584096
+Helm Building, 40.3365672, -74.6555083
+Henry Hall, 40.3458649, -74.6606702
+Henry House, 40.3493812, -74.6589213
+Holder Hall, 40.3487589, -74.6613141
+Hoyt Laboratory, 40.3496505, -74.6546692
+Icahn Laboratory, 40.3444424, -74.6532728
+Ivy Club, 40.348202, -74.652183
+Jadwin Gymnasium, 40.3434557, -74.6486685
+Jadwin Hall, 40.3448786, -74.6517188
+Joline Hall, 40.3477021, -74.6621375
+Jones Hall, 40.3464215, -74.6559002
+Julis Romo Rabinowitz, 40.3490675, -74.6555328
+Labyrinth Books, 40.3502442, -74.6588927
+Lakeside Garage, 40.3378606, -74.655322
+Lakeside Graduate Housing, 40.3365101, -74.6533478
+Laughlin Hall, 40.3461681, -74.6601978
+Lauritzen Hall, 40.343599, -74.6582952
+Lenz Tennis Center, 40.3415464, -74.6550256
+Lewis Library, 40.3462131, -74.6525774
+Little Hall, 40.3468025, -74.6602248
+Lockhart Hall, 40.3467002, -74.6612942
+Lourie-Love Pavilion, 40.3429424, -74.6542316
+Lowrie House, 40.3463308, -74.6692729
+Maclean House, 40.3491065, -74.6602314
+MacMillan Building, 40.3422474, -74.6569495
+Madison Hall, 40.348479, -74.6619717
+Maeder Hall, 40.3492201, -74.6507705
+Marx Hall, 40.3439888, -74.6514481
+McCarter Theatre, 40.3441743, -74.6606056
+McCormick Hall, 40.3471327, -74.6578994
+McCosh Hall, 40.348295, -74.6565931
+McCosh Health Center, 40.3460541, -74.6554939
+McDonnell Hall, 40.3453423, -74.6524847
+Moffett Laboratory, 40.3456384, -74.653882
+Mudd Library, 40.3495985, -74.6519827
+Murley-Pivirotto Family, 40.3439845, -74.6584096
+Murray Theater, 40.3480177, -74.6576785
+Myslik Field, 40.3424513, -74.6541326
+Nassau Hall, 40.348707, -74.6593338
+New South Building, 40.3580731, -74.6671232
+North Garage, 40.3497769, -74.6498523
+Olden House, 40.3511348, -74.6524441
+Palmer House, 40.3490609, -74.6642644
+Pardee Field, 40.343648, -74.6537667
+Patton Hall, 40.3450861, -74.6571974
+Peretsman Scully Hall, 40.3434371, -74.6522789
+Peyton Hall, 40.3465565, -74.6516625
+Plummer Field, 40.3426142, -74.6530348
+Poe Field, 40.3433387, -74.6550335
+Princeton Neuroscience Institute, 40.3430908, -74.6525555
+Princeton Stadium, 40.3457928, -74.6500047
+Princeton Station, 40.3401741, -74.657868
+Princeton University Press, 40.3498879, -74.6536503
+Princeton University Store, 114 Nassau Street,, 40.3501924, -74.6589873
+Procter Hall, 40.3403437, -74.665418
+Prospect Apartments, 40.3499271, -74.6487235
+Prospect Gardens, 40.3467582, -74.6566027
+Prospect House, 40.3471148, -74.6566485
+Pyne Hall, 40.3452285, -74.6596299
+Quadrangle Club, 40.3480129, -74.6527832
+Roberts Stadium, 40.3424243, -74.6536011
+Robertson Hall, 40.348393, -74.654749
+Rock Magnetism Laboratory, 40.3452441, -74.6551473
+Scheide Caldwell House, 40.3494863, -74.6585743
+Schultz Laboratory, 40.3453639, -74.6540108
+Scully Hall, 40.3443101, -74.6544791
+Shea Rowing Center, 40.339533, -74.6507019
+Sherrerd Hall, 40.3495354, -74.6526883
+Sexton Field, 40.3462555, -74.6459902
+Simpson Building, 40.3492621, -74.6549436
+Spelman Halls, 40.3446263, -74.6592663
+Springdale Golf Course, 40.3334329, -74.6595156
+Stanhope Hall, 40.348705, -74.6600326
+Stephens Fitness Center, 40.3455387, -74.6587166
+Streicker Bridge, 40.3442004, -74.6520341
+Strubing Field, 40.3467069, -74.6464476
+Terrace Club, 40.3471942, -74.6539268
+Thermal Energy Storage Tank, 40.341147, -74.6567497
+Thomas Laboratory, 40.344969, -74.6538599
+Tiger Inn, 40.3489971, -74.6522391
+Tower Club, 40.3476903, -74.6539954
+U-Store, 36 University Place, 40.3471325, -74.6615588
+Upper Strubing Field, 40.3474885, -74.6472126
+Visitor Parking Lot 23, 40.3448607, -74.6457084
+Vistor Parking, 40.3448607, -74.6457084
+Wallace Hall, 40.3492626, -74.6536603
+Walker Hall, 40.34553, -74.65703
+Weaver Track Stadium, 40.3446137, -74.6494234
+Wendell Hall, 40.3443903, -74.6583867
+West College, 40.3479909, -74.6596675
+West Garage, 40.350218, -74.662691
+West Lodge, 40.3396501, -74.6664423
+Whig Hall, 40.3478161, -74.658645
+Wilcox Hall, 40.3448133, -74.656124
+Wilf Hall, 40.3443339, -74.6550932
+Witherspoon Hall, 40.3474652, -74.6601474
+Woolworth Center, 40.3472419, -74.6558503
+Musical Studies, 40.3472433, -74.6558493
+Wright Hall, 40.3452594, -74.6573605
+Wu Hall, 40.3447017, -74.6565071
+Wyman Cottage, 40.3401763, -74.6662662
+Wyman House, 40.3400783, -74.6656863
+Yoseloff Hall, 40.3442896, -74.6559166
