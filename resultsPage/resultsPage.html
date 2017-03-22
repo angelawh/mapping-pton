@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Princeton Indoor Mapping - Results</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="resultsPage.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="ie-emulation-modes-warning.js"></script>
+    <script src="resultsPage.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <meta charset=utf-8 />
+    <title></title>
+    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+    <style>
+      body { margin:0; padding:0; }
+      .map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+
+
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <br>
+      <br>
+      <a href="#">Search Results</a>
+      <a href="#">Start:</a>
+      <a href="#">End:</a>
+      <br>
+      <br>
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Search Again</button>
+    </div>
+
+    <!-- Use any element to open the sidenav -->
+    <br>
+    <br>
+    <br>
+    <span onclick="openNav()">open</span>
+    <script>
+    openNav()
+    </script>
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+      ...
+    </div>
+
+  </head>
+
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Princeton Indoor Mapping</a>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <div id='map-three' class='map'> </div>
+    <script>
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZGFuaWVsd29vZDk1IiwiYSI6ImNpcjR0OWUwcDAxbzVmcG5tMXZlcXN1a2kifQ.0cNhlZm47c0tqO-SbdEfyw';
+    var map = L.mapbox.map('map-three', 'mapbox.streets', {
+      scrollWheelZoom: false,
+      maxZoom: 20,
+      minZoom: 14
+    }).setView([40.3475, -74.6568], 17);
+    var myLayer = L.mapbox.featureLayer('mapbox.dc-markers').addTo(map);
+    myLayer.on('layeradd', function(e) {
+      var popupContent = '<strong>' + e.layer.feature.properties.title + '</strong> <br />This map created with <a href="https://mapbox.com">Mapbox</a>!';
+      e.layer.bindPopup(popupContent);
+    });
+    map.addControl(new mapboxgl.AttributionControl(), 'top-left');
+    </script>
+  </body>
+</html>
