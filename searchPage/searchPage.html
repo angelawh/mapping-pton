@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
 <html lang="en">
 
   <head>
@@ -83,13 +82,13 @@
     </nav>
 
     <div class="container">
-      <form class="form-directions">
+      <form action="test.php" method ="get" class="form-directions">
         <label for="inputEmail" class="sr-only">Source</label>
         <input type="text" id="source" class="form-control" placeholder="Start location" required autofocus onkeyup='geturl1(source.value);' >
         <pre hidden="true" id="place1"></pre>
         <br>
         <label for="inputPassword" class="sr-only">Destination</label>
-        <input type="text" id="dest" class="form-control" placeholder="End location or person" required onkeyup='geturl2(dest.value);' >
+        <input type="text" id="dest" class="form-control" placeholder="End location, person, bathroom, printer, class, etc." required onkeyup='geturl2(dest.value);' >
         <pre hidden="true" id="place2"></pre>
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Get Directions</button>
