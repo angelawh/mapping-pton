@@ -304,7 +304,8 @@ function addNodeAttributes() {
     } else if (document.getElementById('otherBuilding').checked) {
       editNode.entry = "B";
       editNode.connected = {"building":document.getElementById("connBuilding").value, 
-                            "floor":document.getElementById("connFloor").value};
+                            "floor":document.getElementById("connFloor").value,
+                            "id":document.getElementById("connId").value};
     } else if (document.getElementById("inside").checked) 
       editNode.entry = "I";
     else {
@@ -354,18 +355,20 @@ function colorFind(nodeID, newNode) {
       else if (document.getElementsByName("gender")[1].checked) gender = 'M';
       else gender = 'X';
     } 
-    else{
+    else {
       gender = getNode(nodeID).gender;
     }
     if (gender == 'M') return '#2ECCFA';
     else if (gender == 'F') return '#F781BE';
     else return '#FF9900';
    } else if (nodeType =='stairs')
-     return '#5858FA';
+    return '#5858FA';
    else if (nodeType =='elevator')
-      return '#FFBF00';
+    return '#FFBF00';
    else if (nodeType =='entry')
-     return '#3ADF00';
+    return '#3ADF00';
+   else if (nodeType == 'accessibility')
+    return '#0C49B3';
  };
 
 // Return the node type indicated in the interface.
@@ -732,7 +735,8 @@ function Node(id, x, y, type) {
           addNodeAttributes();
           if (findNT() == "room") {
             if (document.getElementById("roomNumber").value != '') 
-              document.getElementById("roomNumber").value = String(parseInt(document.getElementById("roomNumber").value) + 1);
+
+              document.getElementById("roomNumber").value = incRoomNumber(document.getElementById("roomNumber").value);
             }
           new_id++;
 
@@ -743,7 +747,7 @@ function Node(id, x, y, type) {
           addNodeAttributes();
           if (findNT() == "room") {
             if (document.getElementById("roomNumber").value != '') 
-              document.getElementById("roomNumber").value = String(parseInt(document.getElementById("roomNumber").value) + 1);
+              document.getElementById("roomNumber").value = incRoomNumber(document.getElementById("roomNumber").value);
             }
             /*if (yep == "room") {
     if (document.getElementById("roomNumber").value != '') 
@@ -772,7 +776,7 @@ function Node(id, x, y, type) {
 
           if (findNT() == "room") {
             if (document.getElementById("roomNumber").value != '') 
-              document.getElementById("roomNumber").value = String(parseInt(document.getElementById("roomNumber").value) + 1);
+              document.getElementById("roomNumber").value = incRoomNumber(document.getElementById("roomNumber").value);
             }
           new_id++;
 
@@ -1301,6 +1305,28 @@ function clear() {
 //};
 //function updateBuildingName() {
 //};
+
+// Helper function to increment the numbers in the Room Number textbox if the room number also contains letters
+function incRoomNumber(number) {
+  if (!isNaN(number)) 
+    return String(parseInt(number) + 1);
+
+  var splitter = /([A-Za-z]+(?=\d)|\d+(?=[A-Za-z]))/;
+  var splitnums = number.split(splitter);
+  for (var i = 0; i < splitnums.length; i++) {
+    if (!isNaN(splitnums[i]) && splitnums[i] != "") {
+       splitnums[i] = String(parseInt(splitnums[i]) + 1);
+       break;
+     }
+  }
+
+  var newNumber = "";
+  for (var i = 0; i < splitnums.length; i++) {
+    newNumber = newNumber + splitnums[i];
+  }
+
+  return newNumber;
+}
 
 function updateText() {
 };
