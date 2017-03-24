@@ -54,6 +54,10 @@
             <img src='icons/straighten.png' alt='Straighten' title='Straighten' class='icon'>
           </label>
           <label class='toollabel'>
+            <input type='radio' class='tool' name='tool' id='rightangle' value='rightangle'>
+            <img src='icons/rightangle.png' alt='Right Angle' title='Right Angle' class='icon'>
+          </label>
+          <label class='toollabel'>
             <input type='radio' class='tool' name='tool' id='scale' value='scale'>
             <img src='icons/scale.png' alt='Scale' title='Scale' class='icon'>
           </label>
@@ -103,7 +107,9 @@
         </form>
 
         <form id= "entryway" class="nodisplay tabbed">
-          Entryway Number: <input type = 'text' name ='entryway' id= "entrywayNo">
+          Entryway Name: <input type = 'text' name ='entryway' id= "entrywayNo">
+          Latitude: <input type = 'text' name ='lat' id= "lat">
+          Longitude: <input type = 'text' name ='long' id= "long">
         </form>  
 
         <form name = "insideConnection" id = "insideEntryway" class="nodisplay tabbed">
@@ -111,6 +117,10 @@
           Floor: <input type="text" id = "connFloor" value="" size = 3>
           Id: <input type="text" id = "connId" value="" size = 5>
         </form>
+
+        <!-- right angle components -->
+        <label id = "rightangleBaseLine" class="nodisplay">Please select base line</label>
+        <label id = "rightangleSnapLine" class="nodisplay">Please select correction line</label>
 
         <!-- scale components -->
         <form id= "scale" class = 'scale nodisplay'>

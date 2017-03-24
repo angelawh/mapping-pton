@@ -301,6 +301,8 @@ function addNodeAttributes() {
     if (document.getElementById('outside').checked) {
       editNode.entry = "O";
       editNode.entryway = document.getElementById("entrywayNo").value;
+      editNode.lat = parseFloat(document.getElementById("lat").value);
+      editNode.long = parseFloat(document.getElementById("long").value);
     } else if (document.getElementById('otherBuilding').checked) {
       editNode.entry = "B";
       editNode.connected = {"building":document.getElementById("connBuilding").value, 
@@ -396,7 +398,7 @@ function bestFit(x, y, nodeA, nodeB) {
   var u = (x - nodeA.x)*(nodeB.x - nodeA.x) + (y - nodeA.y)*(nodeB.y - nodeA.y);
   var udenom = (nodeB.x - nodeA.x)*(nodeB.x - nodeA.x) + (nodeB.y - nodeA.y)*(nodeB.y - nodeA.y);
   u /= udenom;
-  return {x:(nodeA.x + u * (nodeB.x - nodeA.x)), y:(nodeA.y + u * (nodeB.y - nodeA.y))}
+  return {x:Math.round(nodeA.x + u * (nodeB.x - nodeA.x)), y:Math.round(nodeA.y + u * (nodeB.y - nodeA.y))}
 }
 
 /* given the mouse coordinates determines if in range of node or edge - if so returns
@@ -487,6 +489,8 @@ function showHide(change) {
     showClassElements('scale');
   else if (change == 'info') {
     document.getElementById("infobox").style.display = 'inline-block';
+  } else if (change == 'rightangle') {
+    document.getElementById('rightangleBaseLine').style.display = 'inline-block'
   }
 };
 
@@ -1040,7 +1044,6 @@ tools.straighten = function() {
         var result = {};
         var endpoints = [];
         for (var i = 0; i < selectedEdge.length; i++) {
-          var coords = selectedEdge[i].coords;
             if (!(selectedEdge[i].x in result))
                 result[selectedEdge[i].x] = 1;
             else {
@@ -1078,6 +1081,231 @@ tools.straighten = function() {
     }
   };
 };
+
+//right angle ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/* The right angle tool allows the user to select contiguous nodes and edges (a selection must end with 2 nodes and continuously
+ * elements connecting the same 2 nodes), which will be highlighted yellow. First select the base line and next select the correction line.
+ * Both must be valid. This will straighten all nodes of the correction line onto a line perpendicular to the line created between the two 
+ * endpoints of the base line (which may or may not be straight). The line will go through the point that lies at the intersection of the 
+ * base and correction line. All nodes and edges are redrawn accordingly. */
+
+tools.rightangle = function() {
+  var tool = this;
+  this.started = false;
+
+  var closest; //a dictionary with type: 'e', 'n', 'none/object: closest node or edge
+  var selectedBNode; // array of the base selected nodes
+  var selectedBEdge; // array of the base selected edges
+  var selectedCNode; // array of the corr selected nodes
+  var selectedCEdge; // array of the corr selected edges
+  var firstClick = true; // Whether to select base or corrected
+
+  this.mousedown = function (ev) {
+    tool.started = true;    
+    if (firstClick) {
+      selectedBNode = [];
+      selectedBEdge = [];
+    } else {
+      selectedCNode = [];
+      selectedCEdge = [];
+    }
+  };
+
+  this.mousemove = function (ev) {
+    if (!tool.started) {
+      return;
+    }
+    //region detection
+    closest = regionDetection(ev._x, ev._y);
+    
+    if (firstClick) {
+      //detect the closest node or edge and color it yellow, adding it to its respective selected array
+      if (closest.type == 'e') {
+        var contains = false;
+        for (var i = 0; i < selectedBEdge.length; i++) { //checks for duplicates
+          if (selectedBEdge[i] == closest.object) //not sure if can compare 2 edges this way, although testing seems to indicate I can
+            contains = true;
+        }
+        if (!contains) { 
+          selectedBEdge.push(closest.object);
+          var nodeA = getNode(closest.object.x);
+          var nodeB = getNode(closest.object.y);
+          draw_edge(nodeA.x, nodeA.y, nodeB.x, nodeB.y, 'yellow');
+        }
+      } else if (closest.type == 'n') {
+        var contains = false;
+        for (var i = 0; i < selectedBNode.length; i++) { // checks for duplicates
+          if (selectedBNode[i].id == closest.object.id)
+            contains = true;
+        }
+        if (!contains) {
+          selectedBNode.push(closest.object);
+          draw_node(closest.object.x, closest.object.y, radius, 'yellow');
+        }
+      }
+    } else {
+      //detect the closest node or edge and color it yellow, adding it to its respective selected array
+      if (closest.type == 'e') {
+        var contains = false;
+        for (var i = 0; i < selectedCEdge.length; i++) { //checks for duplicates
+          if (selectedCEdge[i] == closest.object) //not sure if can compare 2 edges this way, although testing seems to indicate I can
+            contains = true;
+        }
+        if (!contains) { 
+          selectedCEdge.push(closest.object);
+          var nodeA = getNode(closest.object.x);
+          var nodeB = getNode(closest.object.y);
+          draw_edge(nodeA.x, nodeA.y, nodeB.x, nodeB.y, 'yellow');
+        }
+      } else if (closest.type == 'n') {
+        var contains = false;
+        for (var i = 0; i < selectedCNode.length; i++) { // checks for duplicates
+          if (selectedCNode[i].id == closest.object.id)
+            contains = true;
+        }
+        if (!contains) {
+          selectedCNode.push(closest.object);
+          draw_node(closest.object.x, closest.object.y, radius, 'yellow');
+        }
+      }
+    }
+  };
+
+  this.mouseup = function (ev) {
+    if (tool.started) {
+      tool.mousemove(ev);
+      tool.started = false;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      if (firstClick) {
+        // if valid selection, save it and make it no longer first click
+        if ((selectedBNode.length == (selectedBEdge.length + 1)) && (selectedBEdge.length > 0)) { //may want to improve this check
+          document.getElementById('rightangleBaseLine').style.display = 'none';
+          document.getElementById('rightangleSnapLine').style.display = 'inline-block';
+          firstClick = false;
+        }
+      } else {
+          // find point that occurs in both the correction and base lines. 
+          // If this doesn't exist, choose the first node in selectedCEdge
+          var overlapNode = null;
+          var numOverlap = 0;
+          for (var i = 0; i < selectedCNode.length; i++) {
+            for (var j = 0; j < selectedBNode.length; j++) {
+              if (selectedBNode[j].x == selectedCNode[i].x && selectedBNode[j].y == selectedCNode[i].y) {
+                overlapNode = selectedCNode[i];
+                numOverlap++;
+              }
+            }
+          }
+          if (overlapNode == null) 
+            overlapNode = selectedCNode[0];
+ 
+        // add right angle if correction line is valid selection
+        // valid selection includes only one or zero nodes overlapping between selections
+        if ((numOverlap < 2) && (selectedCNode.length == (selectedCEdge.length + 1)) && (selectedCEdge.length > 0)) { //may want to improve this check
+          //find all edges of interest (any edges connected to selected nodes in correction array)
+          var relatedCEdges = [];
+          for (var i = 0; i < edges.length; i++) {
+            for (var j = 0; j < selectedCNode.length; j++) {
+              if ((edges[i].x == selectedCNode[j].id) || (edges[i].y == selectedCNode[j].id))
+                relatedCEdges.push(edges[i]);
+            }
+          }
+
+          //remove all related correction edges and nodes
+          for (var i = 0; i < relatedCEdges.length; i++) {
+            var nodeA = getNode(relatedCEdges[i].x);
+            var nodeB = getNode(relatedCEdges[i].y);
+            remove_edges(nodeA.x, nodeA.y, nodeB.x, nodeB.y, nodeA.id, nodeB.id); //remove from screen
+          }
+          for (var i = 0; i < selectedCNode.length; i++) {
+            remove_nodes(selectedCNode[i].x, selectedCNode[i].y);
+          }
+
+          //find node endpoints for correction and base by determining which node ids only occur once in selectedEdge arrays
+          var result = {};
+          var endpointsC = [];
+          for (var i = 0; i < selectedCEdge.length; i++) {
+              if (!(selectedCEdge[i].x in result))
+                  result[selectedCEdge[i].x] = 1;
+              else {
+                result[selectedCEdge[i].x]++;
+              }
+              if (!(selectedCEdge[i].y in result))
+                  result[selectedCEdge[i].y] = 1;
+              else {
+                result[selectedCEdge[i].y]++;
+              }
+          }
+          for (var id in result) {
+            if (result[id] == 1)
+              endpointsC.push(id);
+          }
+          result = {};
+          var endpointsB = [];
+          for (var i = 0; i < selectedBEdge.length; i++) {
+              if (!(selectedBEdge[i].x in result))
+                  result[selectedBEdge[i].x] = 1;
+              else {
+                result[selectedBEdge[i].x]++;
+              }
+              if (!(selectedBEdge[i].y in result))
+                  result[selectedBEdge[i].y] = 1;
+              else {
+                result[selectedBEdge[i].y]++;
+              }
+          }
+          for (var id in result) {
+            if (result[id] == 1)
+              endpointsB.push(id);
+          }
+
+          var ep0 = getNode(endpointsB[0]);
+          var ep1 = getNode(endpointsB[1]);
+          var slope = (ep1.y - ep0.y) / (ep1.x - ep0.x);
+          var invSlope = -1 * 1/slope;
+          // Create a fake node that is also on the perpendicular line
+          var otherEndnode = {};
+          if (slope == 0) { 
+            otherEndnode.x = overlapNode.x;
+            otherEndnode.y = overlapNode.y + 1;
+          } else if (slope == Infinity) { 
+            otherEndnode.x = overlapNode.x + 1;
+            otherEndnode.y = overlapNode.y;
+          } else {
+            otherEndnode.x = overlapNode.x + 1;
+            otherEndnode.y = overlapNode.y + invSlope;
+          }
+
+          //find line of best fit
+          //convert each selected node's coords to new coords on line
+          for (var i = 0; i < selectedCNode.length; i++) {
+            if (selectedCNode[i].id != overlapNode.id) {
+              var fittedCoords = bestFit(selectedCNode[i].x, selectedCNode[i].y, overlapNode, otherEndnode); //hardcoding here inevitable??
+              selectedCNode[i].x = fittedCoords.x;
+              selectedCNode[i].y = fittedCoords.y;
+            }
+          }
+
+          //draw new nodes and edges
+          for (var i = 0; i < relatedCEdges.length; i++) {//edges and nodes of interest
+            var nodeA = getNode(relatedCEdges[i].x);
+            var nodeB = getNode(relatedCEdges[i].y);
+            draw_edge(nodeA.x, nodeA.y, nodeB.x, nodeB.y, 'black');
+            draw_node(nodeA.x, nodeA.y, radius, colorFind(nodeA.id, false));
+            draw_node(nodeB.x, nodeB.y, radius, colorFind(nodeB.id, false));
+          }
+          img_update();
+
+          // make it the first click after successful right-angling
+          document.getElementById('rightangleBaseLine').style.display = 'inline-block';
+          document.getElementById('rightangleSnapLine').style.display = 'none';
+          firstClick = true;
+        }
+      }
+    }
+  };
+};
+
 
 //scale ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /* The scale tool allows the user to set the scale from the image (ideally using the scale provided in the floorplan uploaded),

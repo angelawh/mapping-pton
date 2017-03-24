@@ -135,6 +135,10 @@
 	width: 400px;
 }
 
+#entrywayNo, #lat, #long {
+	width: 70px;
+}
+
 /*
 #load {
 	position: absolute;
