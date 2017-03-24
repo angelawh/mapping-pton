@@ -1090,7 +1090,7 @@ tools.straighten = function() {
         img_update();
       }
       else {
-        addAlert('Invalid selection. Please select all contiguous nodes and edges.');
+        addAlert('Invalid selection. Please select all contiguous nodes and edges and at least two nodes and one edge.');
       }
     }
   };
@@ -1197,7 +1197,7 @@ tools.rightangle = function() {
           document.getElementById('rightangleSnapLine').style.display = 'inline-block';
           firstClick = false;
         } else {
-          addAlert('Invalid selection. Please select all contiguous nodes and edges.');
+          addAlert('Invalid selection. Please select all contiguous nodes and edges and at least two nodes and one edge.');
         }
       } else {
           // find point that occurs in both the correction and base lines. 
@@ -1319,7 +1319,7 @@ tools.rightangle = function() {
         } else if (numOverlap > 1) {
           addAlert('Invalid selection. Please only overlap a maximum of one node between selections.');
         } else {
-          addAlert('Invalid selection. Please select all contiguous nodes and edges.');
+          addAlert('Invalid selection. Please select all contiguous nodes and edges and at least two nodes and one edge.');
         }
       }
     }
