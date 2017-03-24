@@ -83,6 +83,9 @@ function init () {
 /*The general-purpose event handler. This function just determines the mouse 
 position relative to the canvas element.*/
 function ev_canvas (ev) {
+  // Clear the alert box if mousedown
+  if (ev.type == 'mousedown')
+    hideAndClearAlert();
   if (ev.layerX || ev.layerX == 0) { // Firefox
     ev._x = ev.layerX;
     ev._y = ev.layerY;
@@ -260,7 +263,7 @@ function draw_edge(startX, startY, endX, endY, color) {
 function setRadius() {
     //set radius size
     if (document.getElementsByName('radius')[0].value == '') {
-      alert('radius is undefined!');
+      addAlert('radius is undefined!');
     }
     radius = parseFloat(document.getElementsByName('radius')[0].value);
 }
@@ -290,7 +293,7 @@ function addNodeAttributes() {
     else if (document.getElementById("U").checked)
       editNode.gender = "U";
     else 
-      alert ("No gender selected.")
+      addAlert("No gender selected.");
   } else if (editNode.type == "stairs") {
     editNode.set = document.getElementById("stairset").value;
     editNode.up = document.getElementById("stairsup").value;
@@ -312,7 +315,7 @@ function addNodeAttributes() {
       editNode.entry = "I";
     else {
       editNode.entry = "I";
-      alert('No entry type selected.');
+      addAlert('No entry type selected.');
     }
   }
 }
@@ -375,8 +378,8 @@ function colorFind(nodeID, newNode) {
 
 // Return the node type indicated in the interface.
 function findNT() {
-  yep = document.getElementById("nodeType").value;
-  return yep;
+  type = document.getElementById("nodeType").value;
+  return type;
  };
 
 // Given the ID of a node, return an 
@@ -549,7 +552,8 @@ function getScale() {
 };
 
 //return the current graph as JSON text
-function saveGraph() {
+// only throw alerts if input is true
+function saveGraph(alert) {
   var image = document.getElementById('file').value;
   image = image.substr(12);
   var nodesScaled = [];
@@ -569,11 +573,11 @@ function saveGraph() {
   }
 
   var graph = new Graph();
-  if (graph.scale == '' || graph.scale == null) {
-    alert('Please enter a scale distance.');
+  if (alert && (isNaN(graph.scale) || graph.scale == '' || graph.scale == null)) {
+    addAlert('Please enter a scale distance.');
   }
-  if (graph.building == '' || graph.floor == '') {
-    alert('Please enter the building name and floor.');
+  if (alert && (graph.building == '' || graph.floor == '')) {
+    addAlert('Please enter the building name and floor number.');
   }
 
   var JSONstring = JSON.stringify(graph);
@@ -585,7 +589,10 @@ var hello;
 // Load the given graphJSON text onto the canvas as nodes and edges.
 function loadGraph(graphJSON, old) {
   graphJSON = JSON.parse(graphJSON);
-  if (graphJSON == '') return;
+  if (graphJSON == '') {
+    addAlert("Invalid JSON Graph. Cannot load.");
+    return;
+  }
 
   //clear nodes and edges
   nodes = [];
@@ -731,7 +738,8 @@ function Node(id, x, y, type) {
           //set edge
           edges.push(new Edge(nearS.object.id, nearE.object.id));
           //undoPush(["e", edges[edges.length - 1]]); //add new to end
-      } else {
+          img_update();
+      } else if (validNode(findNT())) { // only add a new node if it is valid
         if (auto_edge) { //added edge and new node
           //set edge
           edges.push(new Edge(new_id, nearS.object.id));
@@ -791,9 +799,10 @@ function Node(id, x, y, type) {
         //redraw added node
         var last_node = nodes[nodes.length - 1];
         draw_node(last_node.x, last_node.y, radius, colorFind(last_node.id, false));
+        img_update();
+     } else { // Invalid node, clear the canvas
+      context.clearRect(0, 0, canvas.width, canvas.height);
      }
-
-     img_update();
     }
    };
  }; //end tools.add
@@ -815,20 +824,22 @@ tools.move = function(){
   var snapping = false; //boolean to determine whether to snap to x and y coordinate plane
 
   this.mousedown = function (ev) {
-    tool.started = true;
+    if (nodes.length < 0) {
+      tool.started = true;
 
-    //determine the closest node
-    moveNode = closestNode(ev._x, ev._y);
-    //parse through edge array to find connected edges
-    connectID = connectedEdges(moveNode.id);
-    //prepare firstRun
-    firstRun = true;
+      //determine the closest node
+      moveNode = closestNode(ev._x, ev._y);
+      //parse through edge array to find connected edges
+      connectID = connectedEdges(moveNode.id);
+      //prepare firstRun
+      firstRun = true;
 
-    //snapping = document.getElementsByName('snapping')[0].checked;  //CURRENTLY EDITED OUT
-    //prepare snapping
-    if (snapping) { //if snapping true, begin snapping to both X and Y planes
-      snappingX = true;
-      snappingY = true;
+      //snapping = document.getElementsByName('snapping')[0].checked;  //CURRENTLY EDITED OUT
+      //prepare snapping
+      if (snapping) { //if snapping true, begin snapping to both X and Y planes
+        snappingX = true;
+        snappingY = true;
+      }
     }
   };
 
@@ -1354,13 +1365,15 @@ tools.info = function() {
    var closest; //node
 
    this.mousedown = function (ev) {
-     tool.started = true;
-     closest = closestNode(ev._x, ev._y); //returns[coords, id]
-     hello = closest;
-     //erase other highlighting by clearing temp canvas
-     context.clearRect(0, 0, canvas.width, canvas.height);
-     //highlight node
-     draw_node(closest.x, closest.y, radius, '#FFFF00');
+    if (nodes.length > 0) {
+       tool.started = true;
+       closest = closestNode(ev._x, ev._y); //returns[coords, id]
+       hello = closest;
+       //erase other highlighting by clearing temp canvas
+       context.clearRect(0, 0, canvas.width, canvas.height);
+       //highlight node
+       draw_node(closest.x, closest.y, radius, '#FFFF00');
+     }
    };
 
    this.mouseup = function (ev) {
@@ -1388,13 +1401,15 @@ function uploadNodeInfo(node) {
 //save ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Saves current implementation of the graph to the downloads folder.
 function save (ev) {
+  hideAndClearAlert();
+
   if (nodes.length < 1) {
-    alert('Nothing to download!')
+    addAlert('Nothing to download!')
     return;
   }
 
   // Save the graph
-  graphJSON = saveGraph();
+  graphJSON = saveGraph(true);
 
   //if incomplete info, do not save
   if (document.getElementById('buildingName').value == '' ||
@@ -1402,7 +1417,6 @@ function save (ev) {
       ((document.getElementById('pixels').value == '' ||
       document.getElementById('scaleDist').value == '') && 
       ppm == null)) { 
-    alert("Incomplete information to save.");
     return;
   }
 
@@ -1441,8 +1455,13 @@ function load(ev) {
 
   //read in graph
   file = document.getElementById('jsonText').files[0];
-  if (file == undefined) return;
+  if (file == undefined) {
+    addAlert("No file selected.");
+    return;
+  }
   reader = new FileReader();
+
+  hideAndClearAlert();
 
   reader.onload = function (ev) {
     graphJSON = ev.target.result;
@@ -1460,11 +1479,16 @@ function load(ev) {
 //get file and change canvas background when upload
 function upload(zoom){
   var file = document.getElementById('file').files[0];
-  if (file == undefined) return;
+  if (file == undefined) {
+    addAlert("No file selected.");
+    return;
+  }
   var fileread = new FileReader();
   var image = new Image();
   var width, height, newheight;
   var graphJSON;
+
+  hideAndClearAlert();
    
   //fileread.readAsDataURL(file);
   fileread.onload = function(ev) { //once file has uplaoded
@@ -1481,7 +1505,7 @@ function upload(zoom){
           prompt("Please enter the floor number.", "1");
       }
 
-      graphJSON = saveGraph();
+      graphJSON = saveGraph(false);
       scale = document.getElementById('zoom').value;
 
       //resizing the uploaded image
@@ -1515,6 +1539,8 @@ function clear() {
   if (!confirm('Are you sure you want to clear the canvas, all nodes, and all edges?')) {
     return;
   }
+
+  hideAndClearAlert();
   //clear image
   context.clearRect(0, 0, canvas.width, canvas.height);
   contextPerm.clearRect(0, 0, canvasPerm.width, canvasPerm.height);
@@ -1554,6 +1580,62 @@ function incRoomNumber(number) {
   }
 
   return newNumber;
+}
+
+// Helper function to add alert to box and show it
+function addAlert(text) {
+  document.getElementById('alertDiv').innerHTML = text;
+  document.getElementById('alertDiv').style.display = 'inline-block';
+}
+
+function hideAndClearAlert() {
+  document.getElementById('alertDiv').innerHTML = '';
+  document.getElementById('alertDiv').style.display = 'none';
+}
+
+// ensures all necessary entries are filled for node to be valid, otherwise alerts.
+function validNode(type) {
+  if (type == "room") {
+    if (document.getElementById("roomNumber").value == '') {
+      addAlert("Please add a room number."); 
+      return false;
+    }
+  } else if (type == "bathroom") {
+    if (!document.getElementById("F").checked && !document.getElementById("M").checked && !document.getElementById("U").checked) {
+      addAlert("Please select a gender.");
+      return false;
+    }
+  } else if (type == "stairs") {
+    if (document.getElementById("stairset").value == '') {
+      addAlert("Please enter a stair set.");
+      return false;
+    } else if (document.getElementById("stairsup").value == '' && document.getElementById("stairsdown").value == '') {
+      addAlert("Please enter floor up and down information.");
+      return false;
+    }
+  } else if (type == "elevator") {
+    if (document.getElementById("stairset").value == '') {
+      addAlert("Please enter a elevator set.");
+      return false;
+    }
+  }
+  else if (type == "entry") {
+    if (document.getElementById('outside').checked) {
+      if ((document.getElementById("entrywayNo").value == '') || (document.getElementById("lat").value == '') || (document.getElementById("long").value == '')) {
+        addAlert("Please enter entryway name, latitutde, and longitude informaiton.");
+        return false;
+      }
+    } else if (document.getElementById('otherBuilding').checked) {
+      if ((document.getElementById("connBuilding").value == '') || (document.getElementById("connFloor").value == '') || (document.getElementById("connId").value == '')) {
+        addAlert("Please enter connecting building, floor, and id information.");
+        return false;
+      }
+    } else if (!document.getElementById("inside").checked) {
+      addAlert("Please select entry type.");
+      return false;
+    }
+  }
+  return true;
 }
 
 function updateText() {
