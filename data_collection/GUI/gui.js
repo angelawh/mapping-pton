@@ -23,6 +23,7 @@ var new_id = 0;
 var radius = 3;
 var scale = 1; //the scale value
 var ppm = null; //save pixels per meter value for uploaded graphs
+var pixelScaleLevel = 1; // the zoom level at which the scale was measured
 
 //Initialization~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   
@@ -535,7 +536,7 @@ function rescale(coord){
 function getScale() {
   if (ppm != null)
     return ppm;
-  pixels = parseFloat(document.getElementById('pixels').value);
+  pixels = parseFloat(document.getElementById('pixels').value) / pixelScaleLevel;
   distance = parseFloat(document.getElementById('scaleDist').value);
   if (distance == NaN || pixels == NaN) 
     return '';
@@ -1358,6 +1359,7 @@ tools.scale = function() {
      
       //determine number of pixels selected
       pixelDist = Math.round(Math.sqrt(((startX - ev._x) * (startX - ev._x))+ ((startY - ev._y)*(startY - ev._y))));
+      pixelScaleLevel = document.getElementById('zoom').value;
 
       // set textfield value to pixelDist
       document.getElementById('pixels').value = pixelDist;
