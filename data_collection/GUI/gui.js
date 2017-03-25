@@ -327,7 +327,7 @@ function closestNode(x, y) {
   var distance = Infinity;
 
   if (nodes.length == 0)
-    throw "No nodes!";
+    return null; // no nodes
 
   for (var i = 0; i < nodes.length; i++) {
     var cx =  nodes[i].x; //parsing through the coords of every node
@@ -601,26 +601,26 @@ function loadGraph(graphJSON, old) {
 
   //STUFF TO DELETE STARTS HERE
 
-  var oldNodes = graphJSON.nodes;
-  var oldEdges = graphJSON.edges;
-  var newNodes = [];
-  var newEdges = [];
-  if (old == true) {
-    for (var i = 0; i < oldNodes.length; i++) {
-      newNodes.push(new Node(oldNodes[i].id, oldNodes[i].coords[0], oldNodes[i].coords[1], oldNodes[i].type));
-    }
-    
-    for (var i = 0; i < oldEdges.length; i++) {
-      newEdges.push(new Edge(oldEdges[i].coords[0], oldEdges[i].coords[1]));
-    }
-  } else {
-    newNodes = oldNodes;
-    newEdges = oldEdges;
-  }
+  //var oldNodes = graphJSON.nodes;
+  //var oldEdges = graphJSON.edges;
+  //var newNodes = [];
+  //var newEdges = [];
+  //if (old == true) {
+  //  for (var i = 0; i < oldNodes.length; i++) {
+  //    newNodes.push(new Node(oldNodes[i].id, oldNodes[i].coords[0], oldNodes[i].coords[1], oldNodes[i].type));
+  //  }
+  //  
+  //  for (var i = 0; i < oldEdges.length; i++) {
+  //    newEdges.push(new Edge(oldEdges[i].coords[0], oldEdges[i].coords[1]));
+  //  }
+  //} else {
+  //  newNodes = oldNodes;
+  //  newEdges = oldEdges;
+  //}
   //UNCOMMENT THIS STUFF
-  //add new edges and nodes
-  //var newNodes = graphJSON.nodes;
-  //var newEdges = graphJSON.edges;
+  // add new edges and nodes
+  var newNodes = graphJSON.nodes;
+  var newEdges = graphJSON.edges;
   var highestID = 0;
 
   //rescale nodes and determine highest node ID
@@ -825,7 +825,7 @@ tools.move = function(){
   var snapping = false; //boolean to determine whether to snap to x and y coordinate plane
 
   this.mousedown = function (ev) {
-    if (nodes.length < 0) {
+    if (nodes.length > 0) {
       tool.started = true;
 
       //determine the closest node
@@ -1415,7 +1415,7 @@ function save (ev) {
   hideAndClearAlert();
 
   if (nodes.length < 1) {
-    addAlert('Nothing to download!')
+    addAlert('Nothing to download!');
     return;
   }
 
@@ -1510,10 +1510,14 @@ function upload(zoom){
 
       if (!zoom) {
         //get building and floor names
-        document.getElementById('buildingName').value = 
-          prompt("Please enter the building name.", "cs");
-        document.getElementById('floorNumber').value = 
-          prompt("Please enter the floor number.", "1");
+        if (document.getElementById('buildingName').value == '') {
+          document.getElementById('buildingName').value = 
+            prompt("Please enter the building name.", "cs");
+        }
+        if (document.getElementById('floorNumber').value == '') { 
+          document.getElementById('floorNumber').value = 
+            prompt("Please enter the floor number.", "1");
+        }
       }
 
       graphJSON = saveGraph(false);
