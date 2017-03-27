@@ -1,1 +1,96 @@
-<h1>Hello!</h1>
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Princeton Indoor Mapping</h1>
+<p>
+<b>Group Members:</b>
+<br>Daniel Wood (<a href="mailto:dewood@princeton.edu?" target="_top">dewood</a>) 
+<br>Justin Athill (<a href="mailto:jca4@princeton.edu?" target="_top">jca4</a>) <i>Group Leader</i>
+<br> Ambika Viswanathan (<a href="mailto:ambikav@princeton.edu?" target="_top">ambikav</a>) 
+<br>Angela Hillsman (<a href="mailto:angelah@princeton.edu?" target="_top">angelah</a>) 
+<br><br>
+<b>Project Manager:</b>
+<br>Johnathan Balkind (<a href="mailto:jbalkind@princeton.edu?" target="_top">jbalkind</a>)
+<br><br>
+<b><a href="https://docs.google.com/document/d/1vQUaBm37YvfEeVYqtu7PDy7JYRJYQ_OO4owUJOp-GAw/edit">Design Document</a></b>
+<br><br>
+<b>Timeline:</b>
+<br><b>Week 1:</b> March 20 - March 26 - <i>Gather data, write initial querying/parsing code, create UI layout</i>
+<ol>
+	<li>Use Angela's independent work GUI to create JSON node and POI data for floor plans of initial building set: Frist, Blair Hall, Buyers Hall, and Computer Science. Also create a system for how POIs within these data will be named to ensure consistency across buildings. </li>
+	<li>Design and define tables for MySQL database (buildings, bathrooms, professors, students, etc.)</li>
+	<li>Write Python methods for interacting with database: query for building/room number, professor name, etc.</li>
+	<li>Design objects and begin implementing Python method for parsing JSON data - parse out objects/attributes to be used in shortest path algorithm</li>
+	<li>Create user interface layout with Bootstrap - create simple view with no functionality</li>
+	<ul>
+		<li>Query Page only needs to submit source and destination input</li>
+		<li>Results page will roughly include mapping elements with toggles for source/destination floorplans</li>
+	</ul>
+	<li>Define format of search query data that frontend will send to business logic for processing</li>
+	<li>Setup Git repository</li>
+	<li>Setup Project Status Website</li>
+	<li>Design elevator speech</li>
+</ol>
+<b>Week 2:</b> March 20 - March 26 - <i>March 27 - April 2 - Implement search query and shortest path calculation
+</i>
+<ol>
+	<li>Setup cloud database and load with data</li>
+	<li>Finish implementing JSON parsing method</li>
+	<li>Write Python code for shortest path algorithm (first iteration without any heuristics)</li>
+	<li>Write Python code for receiving frontend search queries, processing, and calling the necessary SQL query methods, e.g. query for professor name > get office location > query for office location > get JSON data</li>
+	<li>Design and add frontend search view and implement click interactions.</li>
+</ol>
+<b>Week 3:</b> April 3 - April 9 - <i>Implement indoor/outdoor navigation logic and direction sequence</i>
+<ol>
+	<li>Migrate app to shared server / cloud service</li>
+	<li>Write code for producing final directions and maps</li>
+	<ul>
+		<li>Integrate Google Maps API</li>
+		<li>Differentiate and define transitions between indoor and outdoor maps</li>
+		<li>Load and serve necessary floor plans to frontend</li>
+		<li>Create text directions (e.g. take elevator to 3rd floor)</li>
+		<li>Draw navigation lines on top of floor plans</li>
+	</ul>
+	<li>Write Javascript code to receive necessary navigation info from business logic and display sequence of directions/maps</li>
+</ol>
+<b>Week 4:</b> April 10 - April 16 - <i>Connect all modules and finalize prototype</i>
+<ol>
+	<li>Finish all week 3 tasks</li>
+	<li>Make connections between all parts</li>
+	<li>Prepare prototype demonstration</li>
+	<li>April 14: Project Prototype Due</li>
+</ol>
+<b>Week 5:</b> April 17 - April 23 - <i>Add nearest functionality, setup login, expand database</i>
+<ol>
+	<li>Write code to locate nearest bathroom (printer, etc.)</li>
+	<li>Setup CAS login</li>
+	<li>Polish user interface (add icons etc.)</li>
+	<li>Expand from initial building set - add more floor plans received from OIT to database</li>
+</ol>
+<b>Week 6:</b> April 24 - April 30 - <i>Finalize all features for alpha version</i>
+<ol>
+	<li>Write code to use current location as starting point</li>
+	<li>Make any modifications necessary to ensure proper functioning and UI display on mobile platforms</li>
+	<li>Improve/add heuristics to shortest path algorithm</li>
+	<li>Prepare alpha test demonstration</li>
+	<li>April 28: Alpha Test</li>
+</ol>
+<b>Week 7:</b> May 1 - May 7 - Finalize beta version
+<ol>
+	<li>Debug and retest alpha test feedback</li>
+	<li>Prepare beta test demonstration</li>
+	<li>Begin writing product guide and final report</li>
+	<li>May 4/5: Beta Test</li>
+</ol>
+<b>Week 8:</b> May 8 - May 14 - <i>Final project implementation and report</i>
+<ol>
+	<li>Debug and retest beta test feedback</li>
+	<li>Prepare demo day presentation</li>
+	<li>Finish product guide and final report</li>
+	<li>Demo Days All Week</li>
+	<li>May 14 - Project Due</li>
+</ol>
+</p>
+</body>
+</html>
